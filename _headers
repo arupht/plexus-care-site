@@ -1,0 +1,11 @@
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self' https://wa.me; frame-ancestors 'self'; base-uri 'self'
+
+# Asset filenames are stable; cache-busting is done with a ?v= content hash
+# added by build.py. A bare /assets/ path must therefore NOT be immutable.
+/assets/*
+  Cache-Control: public, max-age=600, must-revalidate

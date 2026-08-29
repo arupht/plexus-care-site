@@ -1,0 +1,348 @@
+/* ============================================================================
+   Plexus Care
+   Monochrome by design. Colour in this system means exactly one thing —
+   clinical urgency — so the brand itself carries none. Archivo throughout,
+   differentiated by weight and tracking rather than by family.
+   ========================================================================= */
+
+:root {
+  /* paper and ink */
+  --paper:    #FBFAF8;
+  --surface:  #FFFFFF;
+  --sunk:     #F4F2EE;
+  --ink:      #14161A;
+  --ink-2:    #4C5158;
+  --ink-3:    #82858B;
+  --ink-4:    #A9ABAF;
+  --rule:     #E4E1DA;
+  --rule-2:   #EFEDE8;
+
+  /* Structural accent. Petrol reads clinical without reading corporate-navy.
+     It marks structure and navigation — eyebrows, links, figures, diagram
+     strokes — and never status. Status stays the three signal colours below,
+     so a coloured dot still means exactly one thing. */
+  --accent:    #0F3D56;
+  --accent-2:  #E7EEF2;
+
+  /* clinical signal — reserved for urgency, never decorative */
+  --immediate: #B03A2E;
+  --urgent:    #9A6B1F;
+  --routine:   #2E6F4E;
+
+  --f: 'Archivo', -apple-system, 'Segoe UI', system-ui, sans-serif;
+
+  --gut: clamp(22px, 6vw, 72px);
+  --maxw: 1120px;
+  --ease: cubic-bezier(.2,.6,.35,1);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:   #101215;
+    --surface: #16191D;
+    --sunk:    #1B1E23;
+    --ink:     #F2F1EE;
+    --ink-2:   #ADB1B7;
+    --ink-3:   #82868C;
+    --ink-4:   #5E6167;
+    --rule:    #262A2F;
+    --rule-2:  #1E2126;
+    --accent:    #63A9C6;
+    --accent-2:  #16242C;
+    --immediate: #E0685A;
+    --urgent:    #D6A24A;
+    --routine:   #5FBF8E;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper:   #101215;
+  --surface: #16191D;
+  --sunk:    #1B1E23;
+  --ink:     #F2F1EE;
+  --ink-2:   #ADB1B7;
+  --ink-3:   #82868C;
+  --ink-4:   #5E6167;
+  --rule:    #262A2F;
+  --rule-2:  #1E2126;
+  --accent:    #63A9C6;
+  --accent-2:  #16242C;
+  --immediate: #E0685A;
+  --urgent:    #D6A24A;
+  --routine:   #5FBF8E;
+  color-scheme: dark;
+}
+
+/* ---------------------------------------------------------------- base --- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 96px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.62;
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { margin: 0; font-weight: 500; line-height: 1.1; letter-spacing: -0.03em; text-wrap: balance; }
+h1 { font-size: clamp(2.15rem, 5.6vw, 3.9rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
+h3 { font-size: 1.02rem; font-weight: 600; letter-spacing: -0.012em; }
+p  { margin: 0; }
+a  { color: inherit; text-decoration: none; }
+img, svg { max-width: 100%; }
+
+::selection { background: var(--ink); color: var(--paper); }
+:focus-visible { outline: 1.5px solid var(--ink); outline-offset: 4px; }
+
+/* -------------------------------------------------------------- layout --- */
+.wrap    { width: 100%; max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gut); }
+.section { padding-block: clamp(46px, 6vw, 88px); }
+.rule    { border: 0; border-top: 1px solid var(--rule); margin: 0; }
+
+/* An eyebrow is a locator, not decoration: it says which part of the site
+   you are standing in. */
+.eyebrow {
+  display: block;
+  font-size: .66rem; font-weight: 500; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: clamp(14px, 1.8vw, 20px);
+}
+
+.lede    { font-size: clamp(1.02rem, 1.5vw, 1.16rem); color: var(--ink-2); max-width: 54ch; line-height: 1.58; }
+.measure { max-width: 58ch; }
+.small   { font-size: .875rem; color: var(--ink-2); }
+.mute    { color: var(--ink-3); }
+
+/* ---------------------------------------------------------------- nav ---- */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent; transition: border-color .3s var(--ease);
+}
+.nav.scrolled { border-bottom-color: var(--rule); }
+.nav__in { display: flex; align-items: center; gap: 28px; height: 74px; }
+.brand { display: inline-flex; align-items: center; flex: none; color: var(--ink); }
+.brand svg, .brand img { height: 26px; width: auto; display: block; }
+.brand .mark-only { display: none; height: 26px; }
+@media (max-width: 560px) {
+  .brand .full { display: none; }
+  .brand .mark-only { display: block; }
+}
+.nav__links { display: flex; gap: 26px; margin-left: auto; align-items: center; }
+.nav__links a {
+  font-size: .885rem; color: var(--ink-2); padding-block: 6px;
+  border-bottom: 1px solid transparent; transition: color .16s var(--ease), border-color .16s var(--ease);
+}
+.nav__links a:hover { color: var(--ink); }
+.nav__links a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--ink); }
+.nav__end { display: flex; align-items: center; gap: 16px; flex: none; }
+.tgl {
+  width: 30px; height: 30px; display: grid; place-items: center; cursor: pointer;
+  border: 0; background: none; color: var(--ink-3); padding: 0;
+}
+.tgl:hover { color: var(--ink); }
+.tgl .i-sun { display: none; }
+:root[data-theme="light"] .tgl .i-sun { display: block; }
+:root[data-theme="light"] .tgl .i-moon { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tgl .i-sun { display: block; }
+  :root:not([data-theme="light"]) .tgl .i-moon { display: none; }
+}
+/* Below 780px the links wrap to a second row rather than hiding behind a
+   menu button: four links do not justify a drawer, and a hidden nav on a
+   four-page site is worse than a taller header. */
+@media (max-width: 780px) {
+  .nav__in { flex-wrap: wrap; height: auto; padding-block: 14px; row-gap: 12px; gap: 16px; }
+  .nav__links { order: 3; width: 100%; margin-left: 0; gap: 22px; font-size: .85rem; }
+  .nav__links a { font-size: .85rem; }
+  .nav__end { margin-left: auto; }
+}
+
+/* --------------------------------------------------------------- link ---- */
+.link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .93rem; font-weight: 500; color: var(--ink);
+  border-bottom: 1px solid var(--ink); padding-bottom: 2px;
+  transition: gap .2s var(--ease), opacity .2s var(--ease);
+}
+.link:hover { gap: 13px; opacity: .62; }
+.link--quiet { border-bottom-color: var(--rule); font-weight: 400; color: var(--ink-2); }
+.link--quiet:hover { color: var(--ink); border-bottom-color: var(--ink); }
+.links-row { display: flex; flex-wrap: wrap; gap: 28px; align-items: center; }
+
+/* --------------------------------------------------------------- table --- */
+/* The module list is a table because it is one: five rows, four facts each. */
+.tbl-wrap { overflow-x: auto; }
+.tbl { width: 100%; border-collapse: collapse; min-width: 620px; }
+.tbl th {
+  text-align: left; font-size: .64rem; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--ink-3); padding: 0 20px 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.tbl td { padding: 22px 20px 22px 0; border-bottom: 1px solid var(--rule-2); vertical-align: baseline; }
+.tbl tr:last-child td { border-bottom: 0; }
+.tbl td:first-child { font-weight: 500; color: var(--ink); width: 1%; white-space: nowrap; }
+.tbl td:nth-child(2) { color: var(--ink-3); font-size: .875rem; width: 1%; white-space: nowrap; }
+.tbl td:nth-child(3) { color: var(--ink-2); font-size: .93rem; }
+.tbl td:last-child { text-align: right; width: 1%; white-space: nowrap; }
+.tbl a:hover { text-decoration: underline; text-underline-offset: 3px; }
+/* On a phone the secondary 'field' column is the first thing worth losing —
+   it is context, not content. */
+@media (max-width: 620px) {
+  .tbl { min-width: 420px; }
+  .tbl th:nth-child(2), .tbl td:nth-child(2) { display: none; }
+}
+
+/* A status is a fact about maturity, so it is set as data, not as a badge. */
+.status { font-size: .74rem; color: var(--ink-3); display: inline-flex; align-items: center; gap: 8px; }
+.status::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.status--live { color: var(--routine); }
+.status--build { color: var(--urgent); }
+
+/* ---------------------------------------------------------- statement ---- */
+.statement { font-size: clamp(1.35rem, 3.1vw, 2rem); font-weight: 500; letter-spacing: -.028em; line-height: 1.24; max-width: 20ch; }
+.cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 4vw, 56px); }
+@media (max-width: 760px) { .cols { grid-template-columns: 1fr; gap: 30px; } }
+.cols h3 { margin-bottom: 8px; }
+.cols p  { font-size: .92rem; color: var(--ink-2); }
+
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(28px, 6vw, 96px); align-items: start; }
+@media (max-width: 860px) { .split { grid-template-columns: 1fr; gap: 32px; } }
+
+/* ---------------------------------------------------------------- list --- */
+.ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; }
+.ticks li { position: relative; padding-left: 22px; color: var(--ink-2); font-size: .93rem; }
+.ticks li::before { content: ''; position: absolute; left: 0; top: .68em; width: 9px; height: 1px; background: var(--ink-4); }
+
+.defs { display: grid; gap: 0; margin: 0; }
+.defs > div { display: grid; grid-template-columns: 168px 1fr; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--rule-2); }
+.defs > div:last-child { border-bottom: 0; }
+@media (max-width: 620px) { .defs > div { grid-template-columns: 1fr; gap: 6px; } }
+.defs dt { font-weight: 500; font-size: .93rem; }
+.defs dd { margin: 0; color: var(--ink-2); font-size: .93rem; }
+
+/* -------------------------------------------------------------- footer --- */
+.foot { border-top: 1px solid var(--rule); padding-block: clamp(40px, 5vw, 60px) 32px; }
+.foot__top { display: flex; flex-wrap: wrap; gap: 28px 64px; justify-content: space-between; margin-bottom: 34px; }
+.foot__nav { display: flex; flex-wrap: wrap; gap: 12px 44px; }
+.foot__nav div { display: grid; gap: 9px; align-content: start; }
+.foot__nav span { font-size: .64rem; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-3); }
+.foot__nav a { font-size: .885rem; color: var(--ink-2); }
+.foot__nav a:hover { color: var(--ink); }
+.foot__bot { display: flex; flex-wrap: wrap; gap: 10px 32px; justify-content: space-between; font-size: .78rem; color: var(--ink-3); }
+.notice { font-size: .8rem; color: var(--ink-3); max-width: 76ch; line-height: 1.6; padding-bottom: 30px; }
+
+/* ----------------------------------------------------------- whatsapp ---- */
+/* Deliberately not a floating bubble. A green blob over a clinical page is
+   the single busiest element a site like this can carry. */
+.wa { display: inline-flex; align-items: center; gap: 9px; font-size: .93rem; font-weight: 500;
+      color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
+.wa:hover { opacity: .62; }
+
+/* --------------------------------------------------------------- forms --- */
+.form { display: grid; gap: 20px; max-width: 460px; }
+.field { display: grid; gap: 7px; }
+.field label { font-size: .68rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.field input, .field select, .field textarea {
+  width: 100%; padding: 10px 0; border: 0; border-bottom: 1px solid var(--rule);
+  background: none; color: var(--ink); font-family: var(--f); font-size: .95rem;
+  border-radius: 0; transition: border-color .18s var(--ease);
+}
+.field textarea { resize: vertical; min-height: 84px; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-bottom-color: var(--ink); }
+.field input::placeholder, .field textarea::placeholder { color: var(--ink-4); }
+.btn {
+  justify-self: start; padding: 12px 26px; border: 1px solid var(--ink); background: var(--ink);
+  color: var(--paper); font-family: var(--f); font-size: .9rem; font-weight: 500; cursor: pointer;
+  transition: opacity .18s var(--ease);
+}
+.btn:hover { opacity: .82; }
+
+/* ---------------------------------------------------------------- misc --- */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* ---------------------------------------------------------------- brand -- */
+/* The mark is inlined rather than linked so it inherits `currentColor` and
+   flips with the theme; an <img>-loaded SVG cannot. The wordmark is live text
+   at the logotype's own tracking, so it stays selectable and legible before
+   the webfont arrives. */
+.brand { gap: 11px; }
+.brand__mark { height: 22px; width: 22px; flex: none; display: block; color: currentColor; }
+.brand__wm {
+  font-size: .95rem; font-weight: 500; letter-spacing: .16em;
+  text-transform: uppercase; white-space: nowrap; padding-right: .16em;
+}
+@media (max-width: 560px) { .brand__wm { display: none; } }
+.foot .brand__wm { display: inline; }
+
+/* ------------------------------------------------------------ page head -- */
+.phead { padding-block: clamp(48px, 6.5vw, 84px) clamp(28px, 3.6vw, 44px); }
+.phead h1 { max-width: 15ch; }
+.phead .lede { margin-top: clamp(22px, 3vw, 30px); }
+
+/* A module entry: a heading block on the left, its facts on the right. */
+.entry { padding-block: clamp(38px, 5vw, 66px); }
+.entry__hd { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; margin-bottom: 18px; }
+.entry__hd h2 { font-size: clamp(1.35rem, 2.6vw, 1.85rem); }
+
+/* Figures are set as data: large number, quiet label. */
+.figs { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(20px, 3vw, 44px); }
+@media (max-width: 760px) { .figs { grid-template-columns: repeat(2, 1fr); } }
+.fig b { display: block; font-size: clamp(1.55rem, 3vw, 2.15rem); font-weight: 500; letter-spacing: -.035em; line-height: 1; }
+.fig b span { font-size: .5em; color: var(--ink-3); margin-left: 2px; }
+.fig i { display: block; font-style: normal; font-size: .82rem; color: var(--ink-3); margin-top: 10px; line-height: 1.45; }
+
+/* A limitation is set apart, because saying it plainly is the point. */
+.caveat { border-left: 1px solid var(--ink-4); padding-left: 20px; color: var(--ink-2); font-size: .93rem; max-width: 62ch; }
+
+/* A table set inside a column, not across the page. */
+.tbl--tight { min-width: 380px; }
+.tbl--tight td:nth-child(2) { color: var(--ink-2); font-size: .93rem; white-space: normal; width: auto; }
+.tbl td em { display: block; font-style: normal; font-size: .8rem; font-weight: 400; color: var(--ink-3); margin-top: 3px; }
+
+/* ------------------------------------------------------------- accent ---- */
+/* Used on structure only. If something here ever needs to say "urgent",
+   it takes a signal colour instead — never this one. */
+.fig b { color: var(--accent); }
+.link:hover { color: var(--accent); border-bottom-color: var(--accent); opacity: 1; }
+.link--quiet:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.tbl td:first-child a:hover { color: var(--accent); }
+.caveat { border-left-color: var(--accent); }
+
+/* --------------------------------------------------------- graphics ----- */
+/* A full-bleed band. The rhythm strip is the signal the product reads, drawn
+   at hairline weight so it sets the room rather than competing with the type. */
+.band {
+  border-block: 1px solid var(--rule);
+  background: var(--surface);
+  overflow: hidden;
+}
+.band svg { display: block; width: 100%; height: auto; color: var(--ink); }
+.band__note {
+  border-top: 1px solid var(--rule-2);
+  padding: 11px 0 0;
+  font-size: .72rem; color: var(--ink-3); letter-spacing: .02em;
+  display: flex; flex-wrap: wrap; gap: 6px 22px;
+}
+.band__note b { color: var(--accent); font-weight: 500; }
+
+.figure { margin: 0; }
+.figure svg { display: block; width: 100%; height: auto; color: var(--ink); }
+.figure figcaption {
+  margin-top: 16px; font-size: .8rem; color: var(--ink-3); max-width: 64ch;
+}
+.figure--framed { border: 1px solid var(--rule); background: var(--surface); padding: clamp(18px,2.6vw,30px); }
+@media (max-width: 620px) { .figure--framed { overflow-x: auto; } .figure--framed svg { min-width: 560px; } }
+
+/* A row of measured numbers. Investors and clinicians both read these first. */
+.figrow { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(18px, 2.6vw, 40px); }
+@media (max-width: 760px) { .figrow { grid-template-columns: repeat(2, 1fr); gap: 26px; } }

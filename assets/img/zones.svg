@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 268" fill="none"
+     role="img" aria-label="Three zones: the clinic holds patient identifiers, the GPU holds none, the cloud holds only a pseudonym">
+  <style>
+    .zt { font: 500 15px Archivo, sans-serif; letter-spacing: -.01em; fill: currentColor; }
+    .zl { font: 400 12.5px Archivo, sans-serif; fill: currentColor; opacity: .62; }
+    .zk { font: 500 9.5px Archivo, sans-serif; letter-spacing: .18em; text-transform: uppercase;
+          fill: var(--accent, #0F3D56); }
+    .zn { font: 500 9.5px Archivo, sans-serif; letter-spacing: .16em; text-transform: uppercase;
+          fill: currentColor; opacity: .40; }
+  </style>
+
+  <!-- zone panels -->
+  <g stroke="currentColor" stroke-opacity=".16" stroke-width="1">
+    <rect x="1" y="34" width="300" height="196"/>
+    <rect x="350" y="34" width="300" height="196"/>
+    <rect x="699" y="34" width="300" height="196"/>
+  </g>
+
+  <!-- boundaries: what may cross, and what may not -->
+  <g stroke="var(--accent, #0F3D56)" stroke-width="1.2" stroke-dasharray="3 4" stroke-opacity=".7">
+    <path d="M325 20 V138 M325 160 V244"/>
+    <path d="M674 20 V138 M674 160 V244"/>
+  </g>
+
+  <text class="zn" x="1" y="20">ZONE 01</text>
+  <text class="zn" x="350" y="20">ZONE 02</text>
+  <text class="zn" x="699" y="20">ZONE 03</text>
+
+  <text class="zt" x="25" y="72">Clinic LAN</text>
+  <text class="zl" x="25" y="98">Imaging archive, full identifiers</text>
+  <text class="zl" x="25" y="120">Folder-watch agent</text>
+  <text class="zl" x="25" y="142">The radiologist's browser</text>
+  <text class="zk" x="25" y="196">HOLDS THE PATIENT</text>
+
+  <text class="zt" x="374" y="72">Our GPU</text>
+  <text class="zl" x="374" y="98">Model inference, in memory</text>
+  <text class="zl" x="374" y="120">Transient — nothing written</text>
+  <text class="zl" x="374" y="142">De-identified training corpus</text>
+  <text class="zk" x="374" y="196">HOLDS NO IDENTIFIERS</text>
+
+  <text class="zt" x="723" y="72">Cloud</text>
+  <text class="zl" x="723" y="98">Worklist, reports, audit</text>
+  <text class="zl" x="723" y="120">Keyed on study UID</text>
+  <text class="zl" x="723" y="142">No name, no ID, no accession</text>
+  <text class="zk" x="723" y="196">HOLDS A PSEUDONYM</text>
+
+  <!-- what crosses each boundary -->
+  <g stroke="currentColor" stroke-opacity=".45" stroke-width="1.2">
+    <path d="M301 164 H344"/>
+    <path d="M650 164 H693"/>
+  </g>
+  <g fill="currentColor" fill-opacity=".45">
+    <path d="M350 164 L342 160.5 L342 167.5 Z"/>
+    <path d="M699 164 L691 160.5 L691 167.5 Z"/>
+  </g>
+  <text class="zn" x="325" y="152" text-anchor="middle">DE-ID</text>
+  <text class="zn" x="674" y="152" text-anchor="middle">SCORE</text>
+
+  <!-- the name is resolved back on the LAN, never written to the cloud -->
+  <path d="M860 230 V252 H160 V230" stroke="currentColor" stroke-opacity=".28"
+        stroke-width="1.2" stroke-dasharray="3 4"/>
+  <path d="M160 230 L156.5 238 L163.5 238 Z" fill="currentColor" fill-opacity=".28"/>
+  <text class="zn" x="500" y="266" text-anchor="middle">NAME RESOLVED IN THE BROWSER, OVER THE LAN — NEVER WRITTEN BACK</text>
+</svg>
