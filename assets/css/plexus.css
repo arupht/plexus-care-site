@@ -346,3 +346,49 @@ img, svg { max-width: 100%; }
 /* A row of measured numbers. Investors and clinicians both read these first. */
 .figrow { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(18px, 2.6vw, 40px); }
 @media (max-width: 760px) { .figrow { grid-template-columns: repeat(2, 1fr); gap: 26px; } }
+
+/* ------------------------------------------------------------ claims ---- */
+/* Added for the Claims Integrity page. Generic enough to reuse elsewhere:
+   a labelled data card, a code sample, and a four-step process strip. No new
+   colour — these read from --ink and --accent exactly like the rest of the
+   system, because status here is financial risk, not clinical urgency, and
+   the three signal colours stay reserved for the latter. */
+.mono { font-family: 'IBM Plex Mono', ui-monospace, Menlo, monospace; }
+
+.claim {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  padding: clamp(20px, 2.6vw, 30px);
+}
+.claim__head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; margin-bottom: 18px;
+  padding-bottom: 16px; border-bottom: 1px solid var(--rule-2);
+}
+.claim__head b { font-size: 1.02rem; font-weight: 600; letter-spacing: -.01em; }
+.claim__head span { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: .78rem; color: var(--ink-3); }
+.claim__row { display: grid; grid-template-columns: 92px 1fr; gap: 4px 18px; padding: 9px 0; border-bottom: 1px solid var(--rule-2); font-size: .9rem; }
+.claim__row:last-child { border-bottom: 0; }
+.claim__row dt { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); padding-top: 2px; }
+.claim__row dd { margin: 0; color: var(--ink-2); }
+.claim__row dd b { color: var(--ink); font-weight: 500; }
+.claim__quote {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: .8rem;
+  background: var(--sunk); border-radius: 2px; padding: 9px 11px; margin-top: 6px;
+  color: var(--ink-2); line-height: 1.55;
+}
+.claim__quote mark { background: transparent; color: var(--ink); font-weight: 500; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 2px; }
+
+.code {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: .82rem; line-height: 1.7;
+  background: var(--sunk); border: 1px solid var(--rule); padding: 18px 20px;
+  overflow-x: auto; color: var(--ink-2); white-space: pre;
+}
+.code b { color: var(--accent); font-weight: 500; }
+
+.flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.flow > div { background: var(--surface); padding: 16px 18px; }
+.flow b { display: block; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.flow p { font-size: .84rem; color: var(--ink-2); margin: 0; }
+@media (max-width: 760px) { .flow { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .flow { grid-template-columns: 1fr; } }
