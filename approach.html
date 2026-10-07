@@ -23,14 +23,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/plexus.css?v=f9b825980c">
 <script>(function(){try{var t=localStorage.getItem('plexuscare-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-<!-- Microsoft Clarity: privacy-masked, consent-gated corporate-site analytics.
-     Replace the project ID below with the ID from clarity.microsoft.com. -->
+<!-- Microsoft Clarity: privacy-masked, consent-gated corporate-site analytics. -->
 <script>
 (function (w, d, projectId) {
   'use strict';
   var id = String(projectId || '').trim();
   var key = 'plexuscare-analytics-consent';
-  var configured = /^[a-z0-9]+$/i.test(id) && id !== 'REPLACE_WITH_CLARITY_PROJECT_ID';
+  var configured = /^[a-z0-9]{6,}$/i.test(id);
 
   function preference() {
     try { return localStorage.getItem(key); } catch (e) { return null; }
@@ -72,7 +71,7 @@
     load();
     w.clarity('consent');
   }
-})(window, document, 'REPLACE_WITH_CLARITY_PROJECT_ID');
+})(window, document, 'yu2i2u48j9');
 </script>
 
 </head>
