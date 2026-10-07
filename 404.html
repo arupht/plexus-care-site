@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found — Plexus Care</title>
+<title>Page not found — PlexusCare</title>
 <meta name="description" content="That page does not exist.">
 <link rel="canonical" href="https://plexus-care.com/404.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://plexus-care.com/404.html">
-<meta property="og:title" content="Page not found — Plexus Care">
+<meta property="og:title" content="Page not found — PlexusCare">
 <meta property="og:description" content="That page does not exist.">
-<meta property="og:image" content="https://plexus-care.com/assets/img/og.png?v=312f8cf6e9">
+<meta property="og:image" content="https://plexus-care.com/assets/img/og.png?v=934ba3454d">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/img/favicon.ico?v=566fe5b022" sizes="48x48">
-<link rel="icon" href="assets/img/favicon.svg?v=d2d26e47b2" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon.svg?v=5d5521ae7c" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png?v=a8aa24a033">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#101215" media="(prefers-color-scheme: dark)">
@@ -21,15 +21,67 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/plexus.css?v=199707aa9f">
-<script>(function(){try{var t=localStorage.getItem('plexus-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/css/plexus.css?v=f9b825980c">
+<script>(function(){try{var t=localStorage.getItem('plexuscare-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<!-- Microsoft Clarity: privacy-masked, consent-gated corporate-site analytics.
+     Replace the project ID below with the ID from clarity.microsoft.com. -->
+<script>
+(function (w, d, projectId) {
+  'use strict';
+  var id = String(projectId || '').trim();
+  var key = 'plexuscare-analytics-consent';
+  var configured = /^[a-z0-9]+$/i.test(id) && id !== 'REPLACE_WITH_CLARITY_PROJECT_ID';
+
+  function preference() {
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  }
+
+  function remember(value) {
+    try { localStorage.setItem(key, value); } catch (e) {}
+  }
+
+  function load() {
+    if (!configured || w.clarity) return;
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r);
+      t.async = 1;
+      t.src = 'https://www.clarity.ms/tag/' + i;
+      y = l.getElementsByTagName(r)[0];
+      y.parentNode.insertBefore(t, y);
+    })(w, d, 'clarity', 'script', id);
+  }
+
+  w.PlexusCareAnalytics = {
+    configured: configured,
+    preference: preference,
+    grant: function () {
+      if (!configured) return;
+      remember('granted');
+      load();
+      w.clarity('consent');
+      w.clarity('event', 'analytics_consent_granted');
+    },
+    decline: function () {
+      remember('declined');
+      if (w.clarity) w.clarity('consent', false);
+    }
+  };
+
+  if (configured && preference() === 'granted') {
+    load();
+    w.clarity('consent');
+  }
+})(window, document, 'REPLACE_WITH_CLARITY_PROJECT_ID');
+</script>
+
 </head>
 <body>
 <header class="nav">
   <div class="wrap nav__in">
-    <a class="brand" href="index.html" aria-label="Plexus Care">
+    <a class="brand" href="index.html" aria-label="PlexusCare">
 <svg class="brand__mark" viewBox="0 0 44 44" fill="none" aria-hidden="true"><path d="M8.844 1.364 L35.156 1.364 L35.156 8.844 L42.636 8.844 L42.636 35.156 L35.156 35.156 L35.156 42.636 L8.844 42.636 L8.844 35.156 L1.364 35.156 L1.364 8.844 L8.844 8.844 Z" fill="none" stroke="currentColor" stroke-width="2.728" stroke-linejoin="miter"/><g transform="translate(9.514 33.880) scale(0.034636 -0.034636)" fill="currentColor"><path d="M76 0V686H420Q496 686 545.5 659.0Q595 632 620.0 583.0Q645 534 645 466Q645 399 619.0 349.0Q593 299 541.5 271.5Q490 244 413 244H206V0ZM206 355H409Q459 355 486.5 384.5Q514 414 514 466Q514 501 502.0 525.0Q490 549 467.0 562.0Q444 575 409 575H206Z"/></g></svg>
-      <span class="brand__wm">Plexus Care</span>
+      <span class="brand__wm">PlexusCare</span>
     </a>
     <nav class="nav__links">
       <a href="platform.html">Platform</a>
@@ -65,14 +117,14 @@
 <footer class="foot">
   <div class="wrap">
     <p class="notice">
-      Plexus Care provides clinical decision support for qualified healthcare professionals.
+      PlexusCare provides clinical decision support for qualified healthcare professionals.
       It is designed to augment—not replace—independent clinical judgment. Availability and
       permitted use may vary by jurisdiction.
     </p>
     <div class="foot__top">
-      <a class="brand" href="index.html" aria-label="Plexus Care">
+      <a class="brand" href="index.html" aria-label="PlexusCare">
         <svg class="brand__mark" viewBox="0 0 44 44" fill="none" aria-hidden="true"><path d="M8.844 1.364 L35.156 1.364 L35.156 8.844 L42.636 8.844 L42.636 35.156 L35.156 35.156 L35.156 42.636 L8.844 42.636 L8.844 35.156 L1.364 35.156 L1.364 8.844 L8.844 8.844 Z" fill="none" stroke="currentColor" stroke-width="2.728" stroke-linejoin="miter"/><g transform="translate(9.514 33.880) scale(0.034636 -0.034636)" fill="currentColor"><path d="M76 0V686H420Q496 686 545.5 659.0Q595 632 620.0 583.0Q645 534 645 466Q645 399 619.0 349.0Q593 299 541.5 271.5Q490 244 413 244H206V0ZM206 355H409Q459 355 486.5 384.5Q514 414 514 466Q514 501 502.0 525.0Q490 549 467.0 562.0Q444 575 409 575H206Z"/></g></svg>
-        <span class="brand__wm">Plexus Care</span>
+        <span class="brand__wm">PlexusCare</span>
       </a>
       <div class="foot__nav">
         <div>
@@ -87,6 +139,8 @@
           <a href="approach.html">Approach</a>
           <a href="about.html">About</a>
           <a href="about.html#contact">Partner with us</a>
+          <a href="privacy.html">Privacy</a>
+          <button class="foot__link" type="button" data-open-analytics hidden>Analytics preferences</button>
         </div>
         <div>
           <span>Contact</span>
@@ -97,12 +151,24 @@
       </div>
     </div>
     <div class="foot__bot">
-      <span>&copy; <span data-year>2026</span> Plexus Care</span>
+      <span>&copy; <span data-year>2026</span> PlexusCare</span>
       <span>Clinical intelligence &middot; human accountability</span>
     </div>
   </div>
 </footer>
 
-<script src="assets/js/plexus.js?v=e5c8b2f784" defer></script>
+<aside class="analytics-consent" data-analytics-consent hidden role="dialog" aria-modal="false" aria-labelledby="analytics-title">
+  <div>
+    <strong id="analytics-title">Privacy-respecting site analytics</strong>
+    <p>Allow privacy-masked Microsoft Clarity analytics to help PlexusCare understand visits, clicks, scrolling and page engagement. Contact-form content stays masked.</p>
+    <a href="privacy.html">Privacy details</a>
+  </div>
+  <div class="analytics-consent__actions">
+    <button class="btn" type="button" data-analytics-choice="granted">Allow analytics</button>
+    <button class="link link--quiet link-button" type="button" data-analytics-choice="declined">Continue without</button>
+  </div>
+</aside>
+
+<script src="assets/js/plexus.js?v=604554624d" defer></script>
 </body>
 </html>

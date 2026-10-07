@@ -1,12 +1,12 @@
 /* =============================================================================
-   Plexus Care — site behaviour.
-   Four small jobs. Everything on the page works without this file.
+   PlexusCare — site behaviour.
+   Theme, navigation, consent preferences and contact handoff.
    ========================================================================== */
 (function () {
   'use strict';
 
   /* ------------------------------------------------------------- theme --- */
-  var KEY = 'plexus-theme';
+  var KEY = 'plexuscare-theme';
   function stored() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
   function current() {
     var set = document.documentElement.getAttribute('data-theme');
@@ -42,12 +42,38 @@
     el.textContent = new Date().getFullYear();
   });
 
+  /* --------------------------------------------- analytics consent ----- */
+  var analytics = window.PlexusCareAnalytics;
+  var consentPanel = document.querySelector('[data-analytics-consent]');
+  var preferenceButtons = document.querySelectorAll('[data-analytics-controls], [data-open-analytics]');
+
+  if (analytics && analytics.configured) {
+    preferenceButtons.forEach(function (el) { el.hidden = false; });
+    if (consentPanel && !analytics.preference()) consentPanel.hidden = false;
+
+    document.addEventListener('click', function (e) {
+      var open = e.target.closest('[data-open-analytics]');
+      if (open && consentPanel) {
+        consentPanel.hidden = false;
+        var first = consentPanel.querySelector('button');
+        if (first) first.focus();
+        return;
+      }
+
+      var choice = e.target.closest('[data-analytics-choice]');
+      if (!choice) return;
+      if (choice.getAttribute('data-analytics-choice') === 'granted') analytics.grant();
+      else analytics.decline();
+      if (consentPanel) consentPanel.hidden = true;
+    });
+  }
+
   /* --------------------------------------------- contact -> WhatsApp ----- */
   document.querySelectorAll('[data-wa-form]').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var d = new FormData(form);
-      var msg = 'Hello Plexus Care.\n\n'
+      var msg = 'Hello PlexusCare.\n\n'
         + 'Name: ' + (d.get('name') || '—') + '\n'
         + 'Organisation: ' + (d.get('org') || '—') + '\n'
         + 'Interested in: ' + (d.get('interest') || '—') + '\n\n'

@@ -1,6 +1,6 @@
 {
-  "name": "Plexus Care",
-  "short_name": "Plexus",
+  "name": "PlexusCare",
+  "short_name": "PlexusCare",
   "description": "Clinical decision support for the first minutes of care.",
   "start_url": "/",
   "display": "standalone",
