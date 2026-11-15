@@ -234,8 +234,10 @@ img, svg { max-width: 100%; }
 .social-icon { width: 15px; height: 15px; flex: none; }
 /* social logos turn to their real brand colours on hover / keyboard focus only; at rest they stay monochrome */
 .svg-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
-.ico-li, .ico-ig { transition: color .16s var(--ease); }
+.ico-li, .ico-ig, .ico-yt, .ico-fb { transition: color .16s var(--ease); }
 a:hover > .ico-li, a:focus-visible > .ico-li { color: #0A66C2; }
+a:hover > .ico-yt, a:focus-visible > .ico-yt { color: #FF0000; }
+a:hover > .ico-fb, a:focus-visible > .ico-fb { color: #1877F2; }
 a:hover > .ico-ig, a:focus-visible > .ico-ig { stroke: url(#plexus-ig-grad); }
 a:hover > .ico-ig circle[stroke="none"], a:focus-visible > .ico-ig circle[stroke="none"] { fill: url(#plexus-ig-grad); }
 
